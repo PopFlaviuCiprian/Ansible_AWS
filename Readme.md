@@ -15,7 +15,7 @@ sudo apt install ansible
 
 To install Terraform go to the link
 https://developer.hashicorp.com/terraform/install
-chose the version dependind on your OS
+chose the version dependind on your OS, 
 in my case, I downloaded the binary file for Linux, unnzipped the file and moved the unzipped file to the folder /usr/local/bin
 
 ```
