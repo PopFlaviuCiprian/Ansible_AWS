@@ -53,13 +53,13 @@ The project structure is shown bellow
 
 ```
 final_project_devops
-├── ansible_key_frankfurt.pem         ( ssh_key_file for conecting to the controler_node and nodes 1, 2, 3 )
+├── ansible_key_frankfurt.pem         ( ssh_key_file for connecting to the controller_node and nodes 1, 2, 3 )
 ├── backup_folder                     ( name of the backup folder )
 │   ├── ansible_key_frankfurt.pem
-│   ├── hosts.ini                     ( inventory file with all the hosts )
-│   ├── install_packages_v2.yml       ( playbook file with all the tasks )
-│   ├── main.tf                       ( terrraform file containing all the infrasctucture configuration )
-│   └── sensitive_info.yaml           ( encripted file with the credentials from docker hub )
+│   ├── hosts.ini                     ( Inventory file with all the hosts )
+│   ├── install_packages_v2.yml       ( Playbook file with all the tasks )
+│   ├── main.tf                       ( Terraform file containing all the infrastructure configuration )
+│   └── sensitive_info.yaml           ( Encripted file with the credentials from docker hub )
 ├── hosts.ini
 ├── install_packages_v2.yml
 ├── main.tf
