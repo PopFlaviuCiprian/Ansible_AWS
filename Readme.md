@@ -32,9 +32,9 @@ In this project I use Terraform to create an infrastructure as follow:
 - Build 4 EC2 instances: provider: AWS, region: eu-central-1, instances: 4, type: t2.micro, on inbound connection allow ssh.
 - Create with Terraform the infrastructure and configure with ansible locally on my pc, to install ansible on one Ec2 instance in AWS that will be the controller of the nodes and at the same time install docker on 3 nodes 
 - Tag instances: controller_node, node1, node2, node3
-- Generate a key, copy the name_key.pem to local pc and at the same time include copying the key to the controller_node for later use to connect to nodes
+- Generate a key, copy the name_key.pem to localhost and at the same time include copying the key to the controller_node for later use to connect to nodes
 
-- Connect to controller_node instance from my local host to test the ssh connection
+- Connect to controller_node instance from local host to test the ssh connection
 
 ```
 ssh -i "private-key_name.pem" ec2-user@instance-ip
@@ -47,7 +47,7 @@ chmod 600 "name_key.pem"
 ```
 
 - Create a inventory file locally with the hosts that will contain all the ip's where I want to install  Ansible and Docker.
-- Create a playbook that contains all the tasks: on controller_node install ansible and on nodes 1,2,3 install docker, where docker will pull an image from my repository in docker-hub and create a container and run one the container on each node.
+- Create a playbook that contains all the tasks: on controller_node install Ansible and on nodes 1,2,3, install Docker, where Docker will pull an image from my repository in docker-hub and create a container and run one container on each node.
 
 The project structure is shown bellow
 
