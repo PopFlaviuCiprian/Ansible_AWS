@@ -1,0 +1,92 @@
+---
+- name: Debug Message Before Install Ansible
+  hosts: controller_node
+  tasks:
+    - name: Print Debug Message
+      debug:
+        msg: 'Before Install Ansible'
+
+- name: Install Ansible, Docker, and Configure Nodes
+  hosts: controller_node
+  become: true
+  tasks:
+    - name: Install Ansible
+      ansible.builtin.yum:
+        name: ansible
+        state: present
+      register: yum_output
+
+- name: Debug  Message for yum
+  hosts: controller_node
+  tasks:
+    - name: Print Debug Message
+      debug:
+        var: yum_output
+
+- name: Debug Message After Install Ansible
+  hosts: controller_node
+  tasks:
+    - name: Print Debug Message
+      debug:
+        msg: 'After Install Ansible'
+
+    - name: Copy the key.pem on controller_node to use for ssh connect to nodes
+      ansible.builtin.copy:
+        src: /home/cipri/simple/ansible_key_frankfurt.pem
+        dest: /home/ec2-user
+        owner: root
+        group: root
+      become: true
+
+- name: Install Docker and pull image on nodes
+  hosts: nodes
+  become: true
+  tasks:
+    - name: Load Docker-Hub credentials
+      include_vars: sensitive_info.yaml
+
+    - name: Install Docker
+      ansible.builtin.yum:
+        name: docker
+        state: present
+
+    - name: Start Docker service
+      ansible.builtin.service:
+        name: docker
+        state: started
+
+    - name: Pull Docker image from Docker Hub
+      community.docker.docker_image:
+        name: flaviuciprianpop/my_docker_cv:1.0
+        tag: 1.0
+        source: pull
+        docker_api_version: 1.41
+        timeout: 300
+      environment:
+        DOCKER_USERNAME: "{{ dockerhub_username }}"
+        DOCKER_PASSWORD: "{{ dockerhub_password }}"
+
+- name: Run Docker containers on nodes
+  hosts: nodes
+  become: true
+  tasks:
+    - name: Run Docker container on node1
+      community.docker.docker_container:
+        name: container_node1
+        image: flaviuciprianpop/my_docker_cv:1.0
+        state: started
+      when: inventory_hostname == 'node1'
+
+    - name: Run Docker container on node2
+      community.docker.docker_container:
+        name: container_node_2
+        image: flaviuciprianpop/my_docker_cv:1.0
+        state: started
+      when: inventory_hostname == 'node2'
+
+    - name: Run Docker container on node3
+      community.docker.docker_container:
+        name: container_node3
+        image: flaviuciprianpop/my_docker_cv:1.0
+        state: started
+      when: inventory_hostname == 'node3'
