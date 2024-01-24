@@ -125,5 +125,7 @@ sudo docker image ls
 sudo docker ps
 ```
 
+### Watch the video
+
 [![Watch the video](https://img.youtube.com/vi/v-pjYFohTkI/hqdefault.jpg)](https://www.youtube.com/embed/v-pjYFohTkI)
 
