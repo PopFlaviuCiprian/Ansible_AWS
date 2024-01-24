@@ -1,11 +1,11 @@
 # Terraform - Ansible - AWS - Docker
 
-# Requirements for local host:
+## Requirements for local host:
 
 - Ansible 
 - Terraform
 
-# Install Ansible and Terraform in this case Debian ditribution
+## Install Ansible and Terraform in this case Debian ditribution
 - To install Ansible run the commands: 
 
 ```
@@ -113,6 +113,9 @@ ansible-playbook -i hosts.ini  install_packages_v2.yml --ask-vault-pass
 
 ```
 ssh -i name_of_key.pem ec2-user@controller_node_ip 
+```
+```
+sudo ansible --version
 ```
 
 - From controller_node we can connect using the key.pem to access the nodes
