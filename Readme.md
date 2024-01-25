@@ -6,7 +6,7 @@
 - Terraform
 
 ## Install Ansible and Terraform 
-### In this case I am using aDebian distribution
+### In this case I am using a Debian distribution
 - To install Ansible run the commands: 
 
 ```
