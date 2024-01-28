@@ -32,7 +32,7 @@
 
     - name: Copy the key.pem on controller_node to use for ssh connect to nodes
       ansible.builtin.copy:
-        src: /home/cipri/simple/ansible_key_frankfurt.pem
+        src: /home/cipri/simple/name_ssh_key.pem
         dest: /home/ec2-user
         owner: root
         group: root
@@ -57,7 +57,7 @@
 
     - name: Pull Docker image from Docker Hub
       community.docker.docker_image:
-        name: flaviuciprianpop/my_docker_cv:1.0
+        name: name_of_your_dockerhub/my_docker_cv:1.0
         tag: 1.0
         source: pull
         docker_api_version: 1.41
@@ -73,14 +73,14 @@
     - name: Run Docker container on node1
       community.docker.docker_container:
         name: container_node1
-        image: flaviuciprianpop/my_docker_cv:1.0
+        image: name_of_your_dockerhub/my_docker_cv:1.0
         state: started
       when: inventory_hostname == 'node1'
 
     - name: Run Docker container on node2
       community.docker.docker_container:
         name: container_node_2
-        image: flaviuciprianpop/my_docker_cv:1.0
+        image: name_of_your_dockerhub/my_docker_cv:1.0
         state: started
       when: inventory_hostname == 'node2'
 
