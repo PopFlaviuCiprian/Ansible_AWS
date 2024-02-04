@@ -1,6 +1,6 @@
 # Terraform - Ansible - AWS - Docker
 
-## Requirements for local host:
+## Requirements for localhost:
 
 - Ansible 
 - Terraform
@@ -38,7 +38,7 @@ In this project I use Terraform to create an infrastructure as follow:
 - Connect to controller_node instance from local host to test the ssh connection
 
 ```
-ssh -i "private-key_name.pem" ec2-user@instance-ip
+ssh -i "key_name.pem" ec2-user@instance-ip
 ```
 
 - If it is necessary to restrict the access to the ssh-key we run this command:
@@ -54,19 +54,18 @@ The project structure is shown bellow
 
 ```
 final_project_devops
-├── ansible_key_frankfurt.pem         ( ssh_key_file for connecting to the controller_node and nodes 1, 2, 3 )
-├── backup_folder                     ( name of the backup folder )
-│   ├── ansible_key_frankfurt.pem
+├── ssh_key_name.pem         ( ssh_key_file for connecting to the controller_node and nodes 1, 2, 3 )
+├── backup_folder                    
+│   ├── ssh_key_name.pem
 │   ├── hosts.ini                     ( Inventory file with all the hosts )
 │   ├── install_packages_v2.yml       ( Playbook file with all the tasks )
 │   ├── main.tf                       ( Terraform file containing all the infrastructure configuration )
-│   └── sensitive_info.yaml           ( Encripted file with the credentials from docker hub )
+│   └── encrypted_file.yaml           ( Encripted file with the credentials from docker hub )
 ├── hosts.ini
 ├── install_packages_v2.yml
 ├── main.tf
-├── sensitive_info.yaml
-├── terraform.tfstate
-└── terraform.tfstate.backup
+├── encrypted_file.yaml
+
 ```
 
 - The files appear 2 times because i always work with a backup_folder ( and of course the "key.pem" will not appear in github for security reasons ) 
